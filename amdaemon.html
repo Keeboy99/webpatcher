@@ -341,6 +341,33 @@
                         ]
                     },
                 ]),
+				
+                // amdaemonExe Ver.91f83d14
+                // Games: SDHD 2.40
+                new Patcher("amdaemon.exe", "91f83d14", [
+                    {
+                        name: "Allow 127.0.0.1/localhost as the network server",
+                        patches: [
+                            { offset: 0x732714, off: [0x31, 0x32, 0x37, 0x2f], on: [0x30, 0x2f, 0x38, 0x00] },
+                            { offset: 0x3F6124, off: [0xff, 0x15, 0xfe, 0xb7, 0x1b, 0x00, 0x8b], on: [0x33, 0xc0, 0x48, 0x83, 0xc4, 0x28, 0xc3] }
+                        ]
+                    },
+                    {
+                        name: "Credit freeze",
+                        tooltip: "Prevents credits from being used. At least one credit must be available to start the game or purchase premium tickets.",
+                        patches: [
+                            { offset: 0x2DD8F8, off: [0x28], on: [0x08] }
+                        ]
+                    },
+                    {
+                        name: "OpenSSL SHA crash bug fix",
+                        tooltip: "Fix crashes on 10th generation and newer Intel CPUs",
+                        patches: [
+                            { offset: 0x502243, off: [0x48], on: [0x4c] },
+                            { offset: 0x50224B, off: [0x48], on: [0x49] },
+                        ]
+                    },
+                ]),
             ]);
         });
     </script>
